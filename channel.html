@@ -1,0 +1,45 @@
+ <html>
+    <head>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
+    <link rel="website icon" href="logo.png">
+    </head>
+    <body>
+        <center>
+          <div class="box1" align="center">
+            بــدر اللـــغة العربيــــة
+          </div><br><br><br><br><br>
+          <img src="logo.png" width="200px"><br><br><br>
+         <div class="name">
+          <div id="nameDisplay">...</div>
+          </div>  <br><br><br>
+          <a href="course1.html"><button class="bton">الحــــــــصص</button></a>
+          <a href="course2.html"><button class="bton">الامتحــــــــانات</button></a>
+          <a href="course3.html"><button class="bton">الجــــــدول</button></a>
+     <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+/*======================================== codes ===============================================*/
+    const names = {
+      "nQgy169752": "اهلا بك ، آدم احمد",
+      "hMaz760813": "hey , mohamed abdelsalam",
+      "lCWR178645": "hey , ahmed hasan",
+      "TQYP389214": "اهلا بك ، ضياء عبدالهادي",
+      "MWTZ513047": "hey , amr sakr",
+      "OooW156738": "hey , omar metwaly",
+      "BRng412308": "hey , ahmed said",
+      "WeZd184390": "hey , adam yehia"
+    };
+/*==============================================================================================*/
+    const display = document.getElementById('nameDisplay');
+    if(names[code]) {
+      display.textContent = names[code];
+    } else {
+      window.location.href="index.html"
+      
+       alert("code is not right")
+    }
+
+  </script>
+    </body>
+ </html>

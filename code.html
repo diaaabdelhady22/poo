@@ -1,0 +1,29 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
+    <link rel="website icon" href="logo.png">
+    </head>
+    <body>
+    <div class="box1" align="center">
+        بــدر اللـــغة العربيــــة
+    </div><br><br><br><br><br><br>
+    <center>
+        <img src="logo.png" width="250px"><br><br><br>
+        <input type="text" id="text"><br><br>
+        <input type="button" value="تأكيد" id="bb" onclick="go()">
+        <br><br><br><br><br>
+        <a href="forget.html"><span class="word" align="center">نسيت الكود</span></a>
+    </center>
+     <script>
+    function go() {
+      const code = document.getElementById('text').value.trim();
+      if(code) {
+        window.location.href = "channel.html?code=" + encodeURIComponent(code);
+      } else {
+        alert('please enter your code');
+      }
+    }
+  </script>
+    </body>
+</html>

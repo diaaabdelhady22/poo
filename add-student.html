@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>إضافة طالب جديد</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h2>لوحة التحكم - إضافة طالب</h2>
+  <form id="form">
+    <label>اسم الطالب:</label><br>
+    <input type="text" id="name"><br><br>
+    
+    <label>كود الدخول:</label><br>
+    <input type="text" id="code"><br><br>
+
+    <button type="submit">إضافة</button>
+  </form>
+
+  <script>
+    document.getElementById("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const code = document.getElementById("code").value;
+
+      // تحميل البيانات القديمة
+      let students = JSON.parse(localStorage.getItem("students")) || {};
+
+      // إضافة طالب جديد
+      students[code] = name;
+
+      // حفظ البيانات
+      localStorage.setItem("students", JSON.stringify(students));
+
+      alert("تمت الإضافة بنجاح!");
+    });
+  </script>
+</body>
+</html>

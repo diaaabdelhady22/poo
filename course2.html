@@ -1,0 +1,83 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+     <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
+    <link rel="website icon" href="logo.png">
+</head>
+<body>
+  <style>
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 120px; /* علشان ميبقاش لازق في العنوان */
+}
+
+.not {
+    border: 5px solid rgb(0, 53, 0);
+    border-radius: 20px;
+    height: 330px;
+    width: 360px;
+    overflow: hidden; /* علشان الحواف تمسك الجزئين */
+    display: flex;
+    flex-direction: column;
+}
+
+.not .top {
+    background-color: rgb(0, 53, 0);
+    height: 25%; /* ربع الكارت */
+    width: 100%;
+}
+
+.not .bottom {
+    background-color: gold;
+    flex: 1; /* ياخد باقي الكارت */
+    width: 100%;
+}
+
+/* تابلت */
+@media (max-width: 992px) {
+  .not {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* موبايل */
+@media (max-width: 600px) {
+  .main {
+    gap: 15px;
+  }
+
+  .not {
+    width: 100%;
+    max-width: 90%;
+    height: 220px;
+  }
+}
+
+
+  </style>
+     <div class="box1" align="center">
+            بــدر اللـــغة العربيــــة
+          </div><br><br>
+          <img src="logo.png" width="200px"><br>
+<div class="main">
+  <div class="not">
+    <div class="top"></div>
+    <div class="bottom"></div>
+  </div>
+  <div class="not">
+    <div class="top"></div>
+    <div class="bottom"></div>
+  </div>
+  <div class="not">
+    <div class="top"></div>
+    <div class="bottom"></div>
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div class="box1" align="center">
+    بــدر اللـــغة العربيــــة
+  </div>
+  <br><br><br><br><br><br> <img src="logo.png" width="250px"><br><br><br>
+  <title>ماسح QR</title>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <style>
+  * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: gold;
+  font-family: 'Changa', sans-serif;
+  text-align: center;
+  color: white;
+  padding-top: 100px; /* للهيدر الثابت */
+}
+
+h1 {
+  font-size: 2.2rem;
+  color: rgb(0, 53, 0);
+  margin-bottom: 30px;
+}
+
+.btn, .bt {
+  background-color: rgb(0, 53, 0);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Changa', sans-serif;
+  text-align: center;
+  color: gold;
+  width: 300px;   /* ثابت على الكمبيوتر */
+  height: 90px;   /* ثابت على الكمبيوتر */
+}
+
+.btn:hover, .bt:hover {
+  background-color: gold;
+  color: rgb(0, 53, 0);
+}
+
+.box1 {
+  width: 100%;
+  background-color: rgb(0, 53, 0);
+  font-size: 2rem;
+  color: gold;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+}
+
+#reader {
+  width: 320px;
+  height: 242px;
+  margin-top: 20px;
+  display: none;
+  border: 5px solid rgb(0, 53, 0); 
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.result {
+  margin-top: 20px;
+  color: #00ffe7;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* 📂 إخفاء choose file */
+#file-input {
+  display: none;
+}
+.upload-btn {
+  background-color: rgb(0, 53, 0);
+  color: gold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 15px 30px;
+  font-family: 'Changa', sans-serif;
+  transition: 0.3s;
+  margin: 15px auto;
+  display: inline-block;
+}
+.upload-btn:hover {
+  background-color: gold;
+  color: rgb(0, 53, 0);
+}
+
+/* 📱 للموبايل */
+@media (max-width: 768px) {
+  .btn, .bt {
+    width: 90%;
+    height: auto;
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+  .box1 {
+    font-size: 1.5rem;
+    padding: 15px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>اختر طريقة مسح QR</h1>
+
+  <button class="btn" onclick="startCameraScan()">📷 مسح بالكاميرا</button>
+  <button class="bt" onclick="document.getElementById('file-input').click()">🖼 رفع صورة</button>
+  <a href="code.html"><button class="bt"> QRلا املك ال </button></a>
+  <input type="file" id="file-input" accept="image/*" onchange="handleFile(event)">
+
+  <div id="reader"></div>
+  <div class="result" id="result"></div>
+
+  <center><script>
+    function startCameraScan() {
+      document.getElementById('reader').style.display = "block";
+      const qrScanner = new Html5Qrcode("reader");
+      qrScanner.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+        (decodedText) => {
+          qrScanner.stop();
+          if (decodedText.startsWith("http")) {
+            window.location.href = decodedText;
+          } else {
+            document.getElementById("result").innerText = "تم: " + decodedText;
+          }
+        },
+        (error) => {
+          
+        }
+      );
+    }
+  </script></center>
+
+  <script>
+    function handleFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const qrScanner = new Html5Qrcode("reader");
+      qrScanner.scanFile(file, true)
+        .then(decodedText => {
+          if (decodedText.startsWith("http")) {
+            window.location.href = decodedText;
+          } else {
+            document.getElementById("result").innerText = "تم: " + decodedText;
+          }
+        })
+        .catch(err => {
+          document.getElementById("result").innerText = "لم يتم العثور على QR في الصورة.";
+        });
+    }
+  </script>
+</body>
+</html>
